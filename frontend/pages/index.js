@@ -1,146 +1,67 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { useEffect } from 'react';
-import styles from '@/styles/Home.module.css'
-import { TypeAnimation } from 'react-type-animation';
-import PromotionIcons from '@/components/PromotionIcons'
-import { NextSeo } from 'next-seo';
+import { NextSeo } from "next-seo";
+import React, { useRef, useEffect } from "react";
+
+import HomePage3 from "@/components/HomePage3";
+
+import BlogCard from "@/components/BlogCard";
+import Link from "next/link";
+import OurCommunity from "@/components/OurCommunity";
 
 export default function Home() {
-  useEffect(() => {
-
-		for (var i = 1; i <= 10; i++) {
-			const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-			var iterations = 0;
-			let element = document.querySelector(`#h${i}`);
-			console.log(element.innerText);
-			const interval = setInterval(() => {
-				element.innerText = element.innerText
-					.split("")
-					.map((letter, index) => {
-						if (index < iterations) {
-							return element.dataset.value[index];
-						}
-						return letters[Math.floor(Math.random() * 26)];
-					})
-					.join("");
-				if (iterations >= element.dataset.value.length) clearInterval(interval);
-				iterations = iterations + 1 / 220;
-			}, 30 + i);
-		}
-
-
-
-	}, [])
-  return (
-    <>
-     <NextSeo
-      title="P;Club - IIT INDORE"
-      description="Programing Club Of IIT INDORE(IITI)"
-    />
-      <div className='bg-black text-center w-full'>
-			<div id="canvas" className='bg-cover bg-center bg-no-repeat text-center my-auto flex justify-center items-center font-bold lg:text-5xl  text-white text-xl sm:text-3xl md:text-4xl  h-screen'>
-				<div className='grid grid-rows-3 text-center  my-auto items-center'>
-					<div className='max-w-full break-all  h-full flex items-center justify-center'>
-						<TypeAnimation
-							sequence={[
-								'The Programming Club',
-								10,
-								'IIT Indore',
-								10,
-								'The Programming Club',
-
-
-
-							]}
-							wrapper="div"
-							cursor={false}
-							repeat={false}
-							style={{ fontSize: '1.5em' }}
-						/>
-					</div>
-					<div className=' pb-5 text-xs flex-wrap md:text-2xl flex justify-center  max-w-full break-all h-full'>
-
-						<div className='grid grid-cols-5 md:flex mx-5 text-center justify-between'>
-							<h1 className='md:mb-5 md:mt-10 my-5 mx-2' id="h1" data-value="TO">TO</h1>
-							<h1 className='md:mb-5 md:mt-10 my-5 mx-2' id="h2" data-value="BE">BE</h1>
-							<h1 className='md:mb-5 md:mt-10 my-5 mx-2' id="h3" data-value="THE">THE</h1>
-							<h1 className='md:mb-5 md:mt-10 my-5 mx-2' id="h4" data-value="VERY">VERY</h1>
-							<h1 className='md:mb-5 md:mt-10 my-5 mx-2' id="h5" data-value="BEST">BEST</h1>
-							<h1 className='md:mb-5 md:mt-10 mx-2' id="h6" data-value="LIKE">LIKE</h1>
-							<h1 className='md:mb-5 md:mt-10 mx-2' id="h7" data-value="NO">NO</h1>
-							<h1 className='md:mb-5 md:mt-10 mx-2' id="h8" data-value="ONE">ONE</h1>
-							<h1 className='md:mb-5 md:mt-10 mx-2' id="h9" data-value="EVER">EVER</h1>
-							<h1 className='md:mb-5 md:mt-10 mx-2' id="h10" data-value="WAS">WAS</h1>
-						</div>
-					</div>
-					<div className='max-w-full break-all  '>
-					<PromotionIcons />
-				</div>
-				</div>
-				
+	return (
+		<>
+			<NextSeo
+				title="P;Club - IIT INDORE"
+				description="Programing Club Of IIT INDORE(IITI)"
+			/>
+			<div className="border-2 border-black overflow-hidden">
+				<HomePage3 />
 			</div>
+			<div className="mx-10 ">
+				<h1 className="text-white font-bold text-3xl sm:text-5xl text-center md:text-start my-10  md:my-20">
+					From The Blog
+				</h1>
+				<div className="grid lg:grid-cols-3 justify-center">
+					<BlogCard
+						title={"Backend Guide for Beginners"}
+						image={
+							"https://cdn-images-1.medium.com/v2/resize:fit:1024/0*hlazkASagjsky3or.jpg"
+						}
+						link={
+							"https://medium.com/the-programming-club-iit-indore/backend-guide-for-beginners-189a2d972182"
+						}
+					/>
+					<BlogCard
+						title={"Networking and Web Basics for Cybersecurity"}
+						image={
+							"https://cdn-images-1.medium.com/v2/resize:fit:1024/0*hlazkASagjsky3or.jpg"
+						}
+						link={
+							"https://medium.com/the-programming-club-iit-indore/networking-and-web-basics-for-cybersecurity-c499e69696ae"
+						}
+					/>
+					<BlogCard
+						title={"Merge Sort for Linked Lists and Arrays"}
+						image={
+							"https://cdn-images-1.medium.com/v2/resize:fit:1024/0*hlazkASagjsky3or.jpg"
+						}
+						link={
+							"https://medium.com/the-programming-club-iit-indore/merge-sort-for-linked-lists-and-arrays-9d0641cfc541?source=rss----d6377ad9ffee---4"
+						}
+					/>
+				</div>
+				<div className="w-full flex justify-center">
+					<div className="border-2 text-white p-4 rounded-md bg-indigo-600 hover:bg-indigo-700 ">
+						<Link href="https://medium.com/the-programming-club-iit-indore">
+							See More
+						</Link>
+					</div>
+				</div>
 
-
-			<style jsx>
-				{`
-          #canvas{
-            
-            animation:bg ease-in-out infinite 20000ms;
-          }
-
-          @keyframes bg{
-            0%{
-              background:url('images/Frame21.jpg');
-			  background-size:cover;
-              
-              
-            }
-            10%{
-              background:url('images/Frame22.jpg');
-			  background-size:cover;
-            }
-            20%{
-              background:url('images/Frame23.jpg');
-              background-size:cover;
-            }
-            30%{
-              background:url('images/Frame24.jpg');
-              background-size:cover;
-            }
-            40%{
-              background:url('images/Frame25.jpg');
-              background-size:cover;
-            }
-            50%{
-              background:url('images/Frame26.jpg');
-              background-size:cover;
-            }
-            60%{
-              background:url('images/Frame27.jpg');
-              background-size:cover;
-            }
-            70%{
-              background:url('images/Frame28.jpg');
-              background-size:cover;
-            }
-            80%{
-              background:url('images/Frame29.jpg');
-              background-size:cover;
-            }
-            90%{
-              background:url('images/Frame210.jpg');
-              background-size:cover;
-            }
-            100%{
-              background:url('images/Frame211.jpg');
-              background-size:cover;
-            }
-          }
-          
-        `}
-			</style>
-		</div>
-    </>
-  )
+			</div>
+			<div>
+				<OurCommunity />
+			</div>
+		</>
+	);
 }
